@@ -12,6 +12,10 @@ def buyabrick
   data['details']['total_money']
 end
 
+get('/') do
+  redirect 'http://www.childsifoundation.org'
+end
+
 get('/total') do
   total = buyabrick
   details = { :total => total }
