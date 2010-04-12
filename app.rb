@@ -19,7 +19,8 @@ end
 get('/total') do
   total = buyabrick
   details = { :total => total }
-  
+
+  headers['Cache-Control'] = 'public, max-age=300'
   respond_to do |wants|
     wants.html { total.to_s }
     wants.txt { total.to_s }
