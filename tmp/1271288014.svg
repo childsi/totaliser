@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="240" height="300">
+stroke:red;stroke-width:3;fill-opacity:0;  <ellipse cx="120" cy="150" rx="80" ry="120"/>
+stroke:gray50;stroke-width:1;  <circle cx="120" cy="150" r="4"/>
+  <circle cx="200" cy="150" r="4"/>
+  <circle cx="120" cy="30" r="4"/>
+  <line x1="120" y1="150" x2="200" y2="150"/>
+  <line x1="120" y1="150" x2="120" y2="30"/>
+stroke:transparent;fill:black;  <text x="130" y="35">End</text>
+  <text x="188" y="135">Start</text>
+  <text x="130" y="95">Height=120</text>
+  <text x="55" y="155">Width=80</text>
+</svg>

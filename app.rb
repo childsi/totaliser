@@ -3,7 +3,7 @@ require 'active_support'
 require 'sinatra'
 require 'sinatra/respond_to'
 require 'json'
-require 'scruffy'
+require 'RMagick'
 require 'open-uri'
 
 Sinatra::Application.register Sinatra::RespondTo
@@ -21,12 +21,18 @@ def google_doc
   data.to_i
 end
 
-def totaliser_image(total)
-  graph = Scruffy::Graph.new
-  graph.renderer = Scruffy::Renderers::Standard.new
-  graph.add :line, [total, 20_000]
-  filename = "tmp/#{Time.now.to_i}.png"
-  graph.render :to => filename, :as => 'png'
+def totaliser_image(total, format='png')
+  filename = "tmp/#{Time.now.to_i}.#{format}"
+  
+  canvas = Magick::Image.new(240, 30, Magick::HatchFill.new('white','lightcyan2'))
+  gc = Magick::Draw.new
+
+  # Draw ellipse
+  gc.rectangle(0, 0, (total/30_000 * 240), 30)
+  
+  gc.draw(canvas)
+  canvas.write(filename)
+  
   open(filename).read  
 end
 
@@ -45,6 +51,6 @@ get('/total') do
     wants.xml { details.to_xml }
     wants.json { details.to_json }
     wants.yaml { details.to_yaml }
-    wants.png { totaliser_image(total) }
+    wants.png { totaliser_image(total, 'png') }
   end
 end
