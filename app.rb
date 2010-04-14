@@ -6,9 +6,8 @@ require 'json'
 require 'scruffy'
 require 'open-uri'
 
-mime_type :png, 'image/png'
-
 Sinatra::Application.register Sinatra::RespondTo
+mime_type :png, 'image/png'
 
 def buyabrick
   data = JSON.parse(open('http://buyabrick.childsifoundation.org/wall.json').read)
